@@ -1,0 +1,8 @@
+Django
+pandas
+scipy
+numpy
+matplotlib
+
+# Algos
+statsmodels

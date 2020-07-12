@@ -1,4 +1,4 @@
-from tad.anomaly_detect_ts import  anomaly_detect_ts
+from tad.anomaly_detect_ts import anomaly_detect_ts
 
 import pandas as pd
 from pathlib import Path
@@ -71,7 +71,8 @@ class FindAnomaliesDriver(object):
         anomaly_series = self.modify_series_index_to_datetime(anomaly_series)
         return anomaly_series
 
-    def generate_results_dict(self, results, dimension_name, dimension_value, measure_name):
+    def generate_results_dict(self, results, anomaly_series,
+                             dimension_name, dimension_value, measure_name):
         # Get anomalies results
         results_dict = dict(results.get('anoms'))
         results = results.get('anoms')
@@ -87,11 +88,12 @@ class FindAnomaliesDriver(object):
             'results_dict':results_dict,
             'results_statistics':
             {
-            'min_value':min(results),
-            'max_value':max(results),
-            'avg_value': results.mean(),
-            'median_value':results.quantile(.5),
-            'upper_90_value':results.quantile(.9)
+            'total_values':len(anomaly_series),
+            'min_value':min(anomaly_series),
+            'max_value':max(anomaly_series),
+            'avg_value': anomaly_series.mean(),
+            'median_value':anomaly_series.quantile(.5),
+            'upper_90_value':anomaly_series.quantile(.9)
             }
         }
         return anomalies_dict
@@ -141,7 +143,7 @@ def main():
                                                 plot=False, longterm=True,
                                                 resampling=True)
 
-                    anomalies_dict = faDriver.generate_results_dict(results,
+                    anomalies_dict = faDriver.generate_results_dict(results, anomaly_series,
                                                                     dimension_name, dimension_value, measure_name)
                     print()
                     logger.log_info(

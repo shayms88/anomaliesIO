@@ -6,3 +6,4 @@ matplotlib
 
 # Algos
 statsmodels
+tad

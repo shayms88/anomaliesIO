@@ -1,0 +1,10 @@
+*.pryrc
+*.Rhistory
+*.idea/
+*.DS_Store
+*.pyc
+nohup.out
+apis_venv/
+config/
+venv/
+/venv/

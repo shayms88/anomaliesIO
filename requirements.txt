@@ -1,8 +1,10 @@
-Django
+# Django
 pandas
 scipy
 numpy
 matplotlib
+# Django Apps
+django-csvimport
 
 # Algos
 statsmodels

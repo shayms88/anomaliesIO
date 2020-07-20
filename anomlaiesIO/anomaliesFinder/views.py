@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+def anomalies_finder_main(request):
+    context = {}
+    return render(request,
+                  'anomaliesFinder/index.html',
+                  context=context)

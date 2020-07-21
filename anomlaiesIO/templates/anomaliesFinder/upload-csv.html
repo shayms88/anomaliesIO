@@ -1,0 +1,15 @@
+{% if message %}
+    {% for message in messages %}
+    <div>
+        <div> ALSJF </div>
+        <storng> {{message|safe}}</storng>
+    </div>
+    {% endfor %}
+{% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3> Step 1 - Upload file</h3>
+        <input id="input-file-now" class="dropify" type="file" name="file"> <br>
+        <button type="submit" class="btn btn-lg btn-success"> Upload </button>
+    </form>
+{% endif %}

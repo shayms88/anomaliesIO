@@ -1,9 +1,18 @@
-import csv
+import csv, io
+from datetime import datetime
 
-def parse_io_string_to_list_of_lists(io_string):
-    final_list = []
-    for row in csv.reader(io_string, delimiter=','):
-        final_list.append(row)
+from django.conf import settings
 
-    return {'columns_names':final_list[0],
-            'data':final_list[1:]}
+
+def parse_and_write_uploaded_csv(csv_data):
+    try:
+        io_string = io.StringIO(csv_data)
+        file_name = "{}csv_data_{}.csv".format(settings.MEDIA_ROOT, datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
+        with open(file_name, mode='w') as f:
+            csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for row in csv.reader(io_string, delimiter=','):
+                csv_writer.writerow(row)
+        return file_name
+
+    except Exception as err:
+        print("Error when parsing CSV:\n{}".format(err))

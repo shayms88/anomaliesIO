@@ -10000,7 +10000,7 @@ h3 {
 }
 .page-section {
   padding: 6rem 0;
-  padding-top: 2rem;
+  padding-top: 9rem;
 }
 .page-section .page-section-heading {
   font-size: 1.5rem;
@@ -10260,3 +10260,5 @@ form .row:first-child .floating-label-form-group {
 .copyright {
   background-color: #1a252f;
 }
+
+

@@ -8,3 +8,5 @@ apis_venv/
 config/
 venv/
 /venv/
+/bin/
+/lib/

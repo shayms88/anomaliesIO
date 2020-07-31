@@ -7,6 +7,6 @@ nohup.out
 apis_venv/
 config/
 venv/
-/venv/
+/anomaliesIO_venv/
 /bin/
 /lib/

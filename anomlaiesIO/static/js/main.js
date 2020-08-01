@@ -1,39 +1,37 @@
 // Initiate Page
 const  uploadDataFormId = "upload-data-form-id"; // This input should be appended to the whole form data
-showOrHideElement(showOrHide='show', elementID='step-two-set-schema');
+showOrHideElement(showOrHide='hide', elementID='step-two-set-schema');
 
 function submitUploadDataForm () {
     "use strict";
     console.log(`Getting data from form ${uploadDataFormId}`);
     var uploadDataFormObject = document.getElementById(uploadDataFormId);
-    // showOrHideLoader('show');
+    showOrHideLoader('show');
     saveUploadedFile(uploadDataFormObject);
 }
 
 function saveUploadedFile(form) {
         // Send ajax call to save form
-        alert("Entered saveFileAndRunAlgo");
         console.log("Submitting #" + uploadDataFormId);
-        var endpoint = "save_uploaded_file" ; // found in urls.py
 
         // Set file data
-        var data = $(form).serialize();
-        var fileData = new FormData();
-        var file_data = $('#input-file-now')[0].files;
-        for (var i = 0; i < file_data.length; i++) {
-            fileData.append("my_images[]", file_data[i]);
-        }
-        data = data+fileData;
-        console.log(fileData);
+        var uploadInputId = "uploaded-file-id";
+        var formData = new FormData();
+        formData.append('file', $(`#${uploadInputId}`)[0].files[0]);
+        formData.append('csrfmiddlewaretoken', form.elements['csrfmiddlewaretoken'].value);
+        alert("Running AJAX");
+        // Set AJAX params
         $.ajax({
+            url : 'save_uploaded_file',
             type : "POST",
-            url : endpoint,
-            data: data,
+            data: formData,
+            processData: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
 
             // handle a successful response
             success: function(context) {
-                console.log("AJAX call SUCCESS!");
-                completeFormSubmission(context); // context is what we get from the python-ajax view
+                triggerStepTwo(context); // context is what we get from the python-ajax view
             },
 
             error: function (xhr, errmsg, err) {
@@ -44,8 +42,11 @@ function saveUploadedFile(form) {
             }
         });
 
-        function completeFormSubmission () {
-            alert("Completed!");
+        function triggerStepTwo (context) {
+            console.log(context);
+            alert("Step 2"+context);
+            showOrHideLoader('hide');
+            showOrHideElement(showOrHide='show', elementID='step-two-set-schema');
         }
     };
 

@@ -13,7 +13,7 @@ from .anomalies_finder_utils import parse_and_write_uploaded_csv
 def anomalies_finder_main(request):
     context = {}
     if request.method == 'POST':
-        return JsonResponse({'status': 'ok'})
+        return HttpResponse(status=204)
 
 
     return render(request, 'index.html', context=context)

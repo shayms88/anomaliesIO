@@ -8,5 +8,6 @@ apis_venv/
 config/
 venv/
 /anomaliesIO_venv/
+/media/
 /bin/
 /lib/

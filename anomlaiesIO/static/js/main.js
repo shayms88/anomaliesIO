@@ -19,7 +19,6 @@ function saveUploadedFile(form) {
         var formData = new FormData();
         formData.append('file', $(`#${uploadInputId}`)[0].files[0]);
         formData.append('csrfmiddlewaretoken', form.elements['csrfmiddlewaretoken'].value);
-        alert("Running AJAX");
         // Set AJAX params
         $.ajax({
             url : 'save_uploaded_file',
@@ -31,6 +30,7 @@ function saveUploadedFile(form) {
 
             // handle a successful response
             success: function(context) {
+                console.log("AJAX SUCCESS - save_uploaded_file")
                 triggerStepTwo(context); // context is what we get from the python-ajax view
             },
 
@@ -44,7 +44,6 @@ function saveUploadedFile(form) {
 
         function triggerStepTwo (context) {
             console.log(context);
-            alert("Step 2"+context);
             showOrHideLoader('hide');
             showOrHideElement(showOrHide='show', elementID='step-two-set-schema');
         }

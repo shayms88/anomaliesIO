@@ -29,8 +29,7 @@ class SaveUploadedFile(APIView):
 
     def __init__(self):
         self.start_timestamp = datetime.datetime.utcnow()
-        self.resource = 'release_notes'
-        self.fad = FindAnomaliesDriver()
+        self.event = 'save_uploaded_file'
 
     def post(self, request, *args, **kwargs):
         context = {}
@@ -40,11 +39,22 @@ class SaveUploadedFile(APIView):
 
         # Parse and save CSV as file in MEDIA_ROOT dir
         data = file.read().decode('UTF-8')
-        csv_file_path = parse_and_write_uploaded_csv(data)
-        context = {'csv_file_path':csv_file_path}
-        # df = self.fad.get_df_from_csv(csv_file_path)
-        # columns_mapping = self.fad.get_df_headers_dtypes(df)
-        # self.fad.run_twitter_algo(csv_file_path)
-        # context = {'columns_mapping':columns_mapping}
+        file_path = parse_and_write_uploaded_csv(data)
+        context = {'file_path':file_path}
+        return Response(context)
 
+class setFiledsSchema(APIView):
+    http_method_names = ['get', 'post']
+
+    def __init__(self):
+        self.start_timestamp = datetime.datetime.utcnow()
+        self.event = 'trigger_set_fields_schema'
+        self.columns_mapping_strings = {'object':'Dimension', 'int64':'Measure', 'float64':'Measure', 'bool':'Boolean'}
+        self.fad = FindAnomaliesDriver()
+
+    def get(self, request, *args, **kwargs):
+        file_path = request.GET['file_path']
+        df = self.fad.get_df_from_csv(file_path)
+        columns_mapping = self.fad.get_df_headers_dtypes(df)
+        context = {'columns_mapping':columns_mapping}
         return Response(context)

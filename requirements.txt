@@ -3,8 +3,10 @@ pandas
 scipy
 numpy
 matplotlib
+
 # Django Apps
 django-csvimport
+djangorestframework
 
 # Algos
 statsmodels

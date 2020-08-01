@@ -1,0 +1,25 @@
+<div class="container">
+    {#  Step 1 - Upload File  #}
+    <div class="inner-container">
+        <h3> Step 1 - Upload file</h3>
+        <h6> You can upload CSV or JSON files</h6>
+        <form method="post"
+              enctype="multipart/form-data"
+              id="upload-data-form-id">
+
+            {% csrf_token %}
+            <input id="input-file-now" class="dropify" type="file" name="file"> <br>
+            <input id="test" name="stam_test" type="text"> STAM INPUT
+            <button onclick="submitUploadDataForm()"
+                    class="btn btn-lg btn-success"> Upload </button>
+        </form>
+    </div>
+
+    {#  Step 2 - Set Schema  #}
+    <div class="inner-container" id="step-two-set-schema">
+        <h3> Step 2 - Set Schema </h3>
+        <h6> adjust schema fields with the right data-type</h6>
+        <div> {{ columns_mapping }} </div>
+    </div>
+
+</div>

@@ -31,6 +31,11 @@ function showOrHideLoader (showOrHide) {
     }
 }
 
+function changeIcon(iconID, newIconString, newColor='') {
+    var iconElement = document.getElementById(iconID);
+    iconElement.className=newIconString;
+    iconElement.style.color = newColor;
+}
 
 // ###############################################################
 //   This part just Validates the csrftoken on each AJAX request

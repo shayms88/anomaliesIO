@@ -19,6 +19,8 @@ function saveUploadedFile(form) {
             // handle a successful response
             success: function(context) {
                 console.log("AJAX SUCCESS - save_uploaded_file");
+                // Change icon
+                changeIcon('step-one-icon', 'fas fa-check', '#1abc9c');
                 triggerStepTwo(context);
             },
 

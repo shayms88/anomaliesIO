@@ -2,7 +2,7 @@
 
 // Initiate Page
 const  uploadDataFormId = "upload-data-form-id"; // This input should be appended to the whole form data
-showOrHideElement(showOrHide='hide', elementID='step-two-set-schema');
+showOrHideElement(showOrHide='hide', elementID='step-two-container');
 
 function submitUploadDataForm () {
     "use strict";
@@ -32,6 +32,8 @@ function showOrHideLoader (showOrHide) {
         $('body').addClass('loaded');
     }
 }
+
+// UI changes functions
 
 function changeIcon(iconID, newIconString, newColor='') {
     var iconElement = document.getElementById(iconID);

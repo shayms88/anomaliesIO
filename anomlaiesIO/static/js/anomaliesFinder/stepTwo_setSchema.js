@@ -1,8 +1,10 @@
 function triggerStepTwo (uploadedFilePath) {
+    showOrHideLoader('hide');
+    showOrHideElement(showOrHide='show', elementID='step-two-container');
+    modifyFirstStepElementsUI();
+
     var file_path = uploadedFilePath.file_path;
     var endpoint = "set_fields_schema";
-    showOrHideLoader('hide');
-    showOrHideElement(showOrHide='show', elementID='step-two-set-schema');
 
     $.ajax({
         url : endpoint,
@@ -40,5 +42,20 @@ function GenerateStepTwoHTML (columnsMapping) {
     return stepTwoTemplate;
 }
 
+function modifyFirstStepElementsUI () {
+    // modify step headers
+    var stepOneConainter = document.getElementById("step-one-container-id");
 
+    // var mainHeader = stepOneConainter.querySelectorAll("#main-step-header")[0];
+    var helpText = stepOneConainter.querySelectorAll("#help-text")[0];
+
+    helpText.style.display = "none";
+    // mainHeader.style.fontSize = "200px";
+
+   // hide upload-file-window (from step-1)
+    var dropifyElementID = document.getElementById("dropify-wrapper-id");
+    var uploadButtonID = document.getElementById("upload-file-btn-id");
+    dropifyElementID.style.display = "none"; uploadButtonID.style.display = "none";
+
+}
 

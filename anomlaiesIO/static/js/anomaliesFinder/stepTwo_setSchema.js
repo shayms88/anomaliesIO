@@ -1,8 +1,9 @@
 function triggerStepTwo (uploadedFilePath) {
-    var file_path = uploadedFilePath.file_path;
-    var endpoint = "set_fields_schema";
     showOrHideLoader('hide');
     showOrHideElement(showOrHide='show', elementID='step-two-set-schema');
+
+    var file_path = uploadedFilePath.file_path;
+    var endpoint = "set_fields_schema";
 
     $.ajax({
         url : endpoint,

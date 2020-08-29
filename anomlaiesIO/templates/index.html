@@ -72,7 +72,7 @@
                 <!-- About Section Content-->
                 <div class="row">
                     <div class="col-lg-4 ml-auto"><p class="lead">Anomaliez-IO helps you perform anomaly-detection statistical analysis in no-time </p></div>
-                    <div class="col-lg-4 mr-auto"><p class="lead">Based on <a target="_blank" href="https://github.com/Marcnuth/AnomalyDetection"> Twitter's Anomaly Detection Alogirthm </a></p></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">Based on <a style="text-decoration: underline;" target="_blank" href="https://github.com/Marcnuth/AnomalyDetection"> Twitter's Anomaly Detection Alogirthm </a></p></div>
                 </div>
             </div>
         </section>
@@ -136,9 +136,10 @@
                 });
         </script>
         <!-- Main -->
-        <script src="{% static 'js/anomaliesFinder/main.js' %}"></script>
-        <script src="{% static 'js/anomaliesFinder/stepOne_saveUploadedFiles.js' %}"></script>
-        <script src="{% static 'js/anomaliesFinder/stepTwo_setSchema.js' %}"></script>
+        <script type="module"
+                src="{% static 'js/anomaliesFinder/main.js' %}"></script>
+{#        <script src="{% static 'js/anomaliesFinder/stepOne_saveUploadedFiles.js' %}"></script>#}
+{#        <script src="{% static 'js/anomaliesFinder/stepTwo_setSchema.js' %}"></script>#}
 
     </body>
 </html>

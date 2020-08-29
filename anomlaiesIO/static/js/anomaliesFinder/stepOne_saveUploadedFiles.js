@@ -21,6 +21,17 @@ function saveUploadedFile(form) {
                 console.log("AJAX SUCCESS - save_uploaded_file");
                 // Change icon
                 changeIcon('step-one-icon', 'fas fa-check', '#1abc9c');
+
+                // Make dropify wrapper smaller and show success message
+                var dropifyWrapperElement = document.getElementsByClassName("dropify-wrapper");
+                var dropfiyWrapperID = "dropify-wrapper-id";
+                dropifyWrapperElement[0].id = dropfiyWrapperID;
+
+
+                // Set success text
+                var dropfiySuccessMessage = "<h6 style='color:green;'> File successfully uploaded </h6>";
+                $(dropfiySuccessMessage).insertAfter(`#${dropfiyWrapperID}`);
+
                 triggerStepTwo(context);
             },
 

@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 // Initiate Page
 const  uploadDataFormId = "upload-data-form-id"; // This input should be appended to the whole form data
 showOrHideElement(showOrHide='hide', elementID='step-two-set-schema');

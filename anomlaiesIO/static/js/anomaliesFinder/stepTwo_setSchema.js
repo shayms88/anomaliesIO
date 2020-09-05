@@ -31,30 +31,30 @@ function GenerateStepTwoHTML (columnsMapping) {
     console.log(columnsMapping);
     const pandasFieldTypesMapping = {'int64':'Numbers', 'float64':'Numbers', 'bool':'Booleans','object':'Strings'};
 
-    var stepTwoTemplate = `<div>`;
+    var stepTwoTemplate = `<div class="row">`;
+        for (var fieldTypeKey in columnsMapping) {
+            var fieldList = columnsMapping[fieldTypeKey];
+            console.log("Fields List:", fieldList);
+            stepTwoTemplate += generateStepFieldsCard(pandasFieldTypesMapping[fieldTypeKey], fieldList);
+        }
 
-    for (var fieldTypeKey in columnsMapping) {
-        // Set fieldType header
-        var fieldList = columnsMapping[fieldTypeKey]
-        stepTwoTemplate += `<h5 class="m-t-30 m-b-10"> ${pandasFieldTypesMapping[fieldTypeKey]} </h5>`;
-
-        // Go for each field in fieldTpe list
-        fieldList.forEach(function(field) {
-                stepTwoTemplate += `<span>`
-                    stepTwoTemplate += `<h6> ${field} </h6>`
-                    stepTwoTemplate += `<select class="selectpicker" data-style="form-control btn-secondary">`;
-                        stepTwoTemplate += `<option value="date"> Date </option>`;
-                        stepTwoTemplate += `<option value="${field}"> ${field} </option>`;
-                        stepTwoTemplate += `<option value="${field}"> ${field} </option>`;
-                    stepTwoTemplate += `<div class="</select>">`;
-
-            });
-
-
-
-    }
-
+        stepTwoTemplate += `</div>`
     return stepTwoTemplate;
+     }
+
+function generateStepFieldsCard (header, fieldList) {
+    var stepFieldsCardTemplate = '';
+            stepFieldsCardTemplate += '<div class="col-lg-3 col-md-6"> <div class="card">';
+                stepFieldsCardTemplate += '<div class="card-body">';
+                    stepFieldsCardTemplate += `<h5 class="card-title"> ${header}</h5>`; // Card Header
+                    for (var field in fieldList) {
+                        stepFieldsCardTemplate += `<p class="card-text"> ${fieldList[field]} </p>`; // Fields
+                    }
+                stepFieldsCardTemplate += '</div>'; // closing card-body div
+
+            stepFieldsCardTemplate += '</div> </div>'; // closing "card" and "col-lg-3..." divs
+
+    return stepFieldsCardTemplate
 }
 
 function modifyFirstStepElementsUI () {

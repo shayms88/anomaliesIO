@@ -20,6 +20,8 @@
         <!-- Core theme CSS & Bootstrap-->
         <link href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/financial_calculator/main.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/financial_calculator/tabs.css' %}" rel="stylesheet" type="text/css">
         <!-- Bootstrap Select -->
         <link href="{% static 'assets/plugins/bootstrap-select/bootstrap-select.min.css' %}" rel="stylesheet" type="text/css">
 
@@ -37,46 +39,32 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio"> Invest Calculator </a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#real-estate-section"> Real Estate </a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" />
-                <!-- Masthead Heading-->
-                <img class="img-fluid" src="{% static 'assets/img/anomaly-detection-icon.svg' %}" alt="" />
-                <h1 class="masthead-heading text-uppercase mb-0">Anomaliez-IO</h1>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Deep dive into your data </p>
-            </div>
-        </header>
         <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="portfolio">
-            {% include "financial_calculator/main.html" %}
+        <section id="real-estate-section">
+            <!-- Masthead-->
+            <header class="masthead bg-primary text-white text-center">
+                <div class="container d-flex align-items-center flex-column">
+                    <!-- Masthead Avatar Image-->
+                    <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" />
+                    <!-- Masthead Heading-->
+                    <img class="img-fluid" src="{% static 'assets/img/financial_calculators/home-flaticon.svg' %}" alt=""/>
+                    <h1 class="masthead-heading text-uppercase mb-0">Real Estate</h1>
+                    <!-- Masthead Subheading-->
+                    <p class="masthead-subheading font-weight-light mb-0">Find the best deal for you </p>
+                </div>
+            </header>
+            {% include "financial_calculator/real-estate.html" %}
         </section>
-{#        <!-- About Section-->#}
-{#        <section class="page-section bg-primary text-white mb-0" id="about">#}
-{#            <div class="container">#}
-{#                <!-- About Section Heading-->#}
-{#                <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>#}
-{#                <!-- Icon Divider-->#}
-{#                <div class="divider-custom divider-light">#}
-{#                    <div class="divider-custom-line"></div>#}
-{#                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>#}
-{#                    <div class="divider-custom-line"></div>#}
-{#                </div>#}
-{#                <!-- About Section Content-->#}
-{#                <div class="row">#}
-{#                    <div class="col-lg-4 ml-auto"><p class="lead">Anomaliez-IO helps you perform anomaly-detection statistical analysis in no-time </p></div>#}
-{#                    <div class="col-lg-4 mr-auto"><p class="lead">Based on <a style="text-decoration: underline;" target="_blank" href="https://github.com/Marcnuth/AnomalyDetection"> Twitter's Anomaly Detection Alogirthm </a></p></div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </section>#}
+        <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            {% include "financial_calculator/about.html" %}
+        </section>
         <!-- Footer-->
 {#        <footer class="footer text-center">#}
 {#            <div class="container">#}
@@ -111,8 +99,10 @@
 {#            </div>#}
 {#        </footer>#}
         <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Anomaliez-IO 2020</small></div>
+        <div class="footer-container">
+            <div class="copyright py-4 text-center text-white footer-container">
+                <div class="container"><small>Financial Calculator 2021</small></div>
+            </div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

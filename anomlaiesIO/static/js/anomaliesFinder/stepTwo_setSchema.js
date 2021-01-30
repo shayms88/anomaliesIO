@@ -28,29 +28,44 @@ function triggerStepTwo (uploadedFilePath) {
 }
 
 function GenerateStepTwoHTML (columnsMapping) {
-    var i, len, text;
     console.log(columnsMapping);
-    // Start a UL
-    var stepTwoTemplate = `<ul>`;
+    const pandasFieldTypesMapping = {'int64':'Numbers', 'float64':'Numbers', 'bool':'Booleans','object':'Strings'};
 
-    // Append each key from columns mapping
-    for (var key in columnsMapping) {
-      stepTwoTemplate += `<li> ${key} : ${columnsMapping[key]} </li>`;
-    }
-    // Close ul
-    stepTwoTemplate += `</ul>`;
+    var stepTwoTemplate = `<div class="row">`;
+        for (var fieldTypeKey in columnsMapping) {
+            var fieldList = columnsMapping[fieldTypeKey];
+            console.log("Fields List:", fieldList);
+            stepTwoTemplate += generateStepFieldsCard(pandasFieldTypesMapping[fieldTypeKey], fieldList);
+        }
+
+        stepTwoTemplate += `</div>`
     return stepTwoTemplate;
+     }
+
+function generateStepFieldsCard (header, fieldList) {
+    var stepFieldsCardTemplate = '';
+            stepFieldsCardTemplate += '<div class="col-lg-3 col-md-6"> <div class="card">';
+                stepFieldsCardTemplate += '<div class="card-body">';
+                    stepFieldsCardTemplate += `<h5 class="card-title"> ${header}</h5>`; // Card Header
+                    for (var field in fieldList) {
+                        stepFieldsCardTemplate += `<p class="card-text"> ${fieldList[field]} </p>`; // Fields
+                    }
+                stepFieldsCardTemplate += '</div>'; // closing card-body div
+
+            stepFieldsCardTemplate += '</div> </div>'; // closing "card" and "col-lg-3..." divs
+
+    return stepFieldsCardTemplate
 }
 
 function modifyFirstStepElementsUI () {
     // modify step headers
     var stepOneConainter = document.getElementById("step-one-container-id");
 
-    // var mainHeader = stepOneConainter.querySelectorAll("#main-step-header")[0];
+    var mainHeader = stepOneConainter.querySelectorAll("#main-step-header")[0];
     var helpText = stepOneConainter.querySelectorAll("#help-text")[0];
 
     helpText.style.display = "none";
-    // mainHeader.style.fontSize = "200px";
+    mainHeader.style.fontSize = "20px";
 
    // hide upload-file-window (from step-1)
     var dropifyElementID = document.getElementById("dropify-wrapper-id");

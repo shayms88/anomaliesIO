@@ -8,7 +8,36 @@
     <div class="tabs-container">
         <div class="tab-content">
             <div class="tab-pane p-20 active" id="profitability" role="tabpanel">
-                <h1> Main Thing here!!! </h1>
+                <div>
+                    <h3> Investment Profitability </h3>
+                    <p> Use our profitability calculator to estimate your potential invest chances of positive yield in a given number of years<br>
+                        Simply enter income, expenses and more details about the invest to calculate if that's the right invest for you right now </p>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="income-params">
+                            <h5 style="color:darkgreen;"> Income Parameters </h5>
+
+                            {# Real Estate Income Form #}
+                            <form class="income-params-form">
+                                {% include "financial_calculator/real-estate/forms/income-params.html" %}
+                            </form>
+                        </div>
+
+                        <div class="expenses-params">
+                            <h5 style="color:darkred;"> Expenses Parameters </h5>
+                            {# Real Estate Expenses Form #}
+                            <form class="income-params-form">
+                                {% include "financial_calculator/real-estate/forms/expenses-params.html" %}
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-9">
+                        <h3> Results </h3>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane p-20" id="mortgage" role="tabpanel">3</div>
         </div>

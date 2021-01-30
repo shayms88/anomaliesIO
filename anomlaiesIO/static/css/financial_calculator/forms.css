@@ -1,0 +1,17 @@
+::placeholder {
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+.form-field{
+  margin-bottom:20px;
+  max-width: 250px;
+}
+
+.input-group-text {
+  height: 27.5px;
+}
+
+.form-control {
+  height: 27.5px;
+}

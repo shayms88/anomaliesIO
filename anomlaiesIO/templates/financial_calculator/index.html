@@ -40,29 +40,26 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#real-estate-section"> Real Estate </a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#stock-market-section"> Stock Market </a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- Portfolio Section-->
+        <!-- Real Estate Section-->
         <section id="real-estate-section">
-            <!-- Masthead-->
-            <header class="masthead bg-primary text-white text-center">
-                <div class="container d-flex align-items-center flex-column">
-                    <!-- Masthead Avatar Image-->
-                    <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="" />
-                    <!-- Masthead Heading-->
-                    <img class="img-fluid" src="{% static 'assets/img/financial_calculators/home-flaticon.svg' %}" alt=""/>
-                    <h1 class="masthead-heading text-uppercase mb-0">Real Estate</h1>
-                    <!-- Masthead Subheading-->
-                    <p class="masthead-subheading font-weight-light mb-0">Find the best deal for you </p>
-                </div>
-            </header>
-            {% include "financial_calculator/real-estate.html" %}
+            {% include "financial_calculator/real-estate/real-estate-header.html" %}
+            {% include "financial_calculator/real-estate/real-estate-main.html" %}
         </section>
+
+        <!-- Stock Market Section-->
+        <section id="stock-market-section">
+            {% include "financial_calculator/stock-market/stock-market-header.html" %}
+            {% include "financial_calculator/stock-market/stock-market-main.html" %}
+        </section>
+
         <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about">
+        <section class="about-container bg-primary text-white mb-0" id="about">
             {% include "financial_calculator/about.html" %}
         </section>
         <!-- Footer-->
@@ -121,11 +118,6 @@
 
         <!-- Bootsrap Select -->
         <script src="{% static 'assets/plugins/bootstrap-select/bootstrap-select.min.js' %}"></script>
-
-        <!-- Main -->
-        <script src="{% static 'js/anomaliesFinder/main.js' %}"></script>
-        <script src="{% static 'js/anomaliesFinder/stepOne_saveUploadedFiles.js' %}"></script>
-        <script src="{% static 'js/anomaliesFinder/stepTwo_setSchema.js' %}"></script>
 
     </body>
 </html>

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="income-params">
-                            <h5 style="color:darkgreen;"> Income Parameters </h5>
+                            <h5 style="color:darkgreen;"> Income </h5>
 
                             {# Real Estate Income Form #}
                             <form class="income-params-form">
@@ -25,17 +25,25 @@
                         </div>
 
                         <div class="expenses-params">
-                            <h5 style="color:darkred;"> Expenses Parameters </h5>
+                            <h5 style="color:darkred;"> Expenses </h5>
                             {# Real Estate Expenses Form #}
-                            <form class="income-params-form">
+                            <form class="expenses-params-form">
                                 {% include "financial_calculator/real-estate/forms/expenses-params.html" %}
                             </form>
                         </div>
 
+                        <div class="advanced-params">
+                            {# Real Estate Advanced Form #}
+                            <form class="advanced-params-form">
+                                {% include "financial_calculator/real-estate/forms/advance-params.html" %}
+                            </form>
+                        </div>
+
+
 
                     </div>
                     <div class="col-md-9">
-                        <h3> Results </h3>
+                        {% include "financial_calculator/real-estate/results/main-results.html" %}
                     </div>
                 </div>
             </div>

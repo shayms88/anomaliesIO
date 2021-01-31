@@ -22,4 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('anomalies-finder/main', permanent=False)),
     url(r'anomalies-finder/', include('anomaliesFinder.urls')),
-]
+    url(r'financial-calculator/', include('financial_calculator.urls'))]

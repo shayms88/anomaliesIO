@@ -1,0 +1,29 @@
+/* Containers */
+.main-container {
+    padding:3rem;
+    margin-bottom:10rem;
+}
+
+.tabs-container {
+    padding:1rem;
+    min-height: 10rem;
+}
+
+.about-container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.footer-container {
+    margin-bottom:0px;
+}
+
+/* Inner section styling */
+.heading-text {
+    font-size:2.5rem;
+}
+
+.subheading-text {
+    font-size:1.25rem;
+}
+

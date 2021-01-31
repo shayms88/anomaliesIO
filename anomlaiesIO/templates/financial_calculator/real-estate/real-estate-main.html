@@ -1,0 +1,53 @@
+<div class="card-body p-b-0 main-container">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs customtab2" role="tablist">
+        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#profitability" role="tab" aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down"> Investment Profitability </span></a> </li>
+        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#mortgage" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down"> Mortgage </span></a> </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tabs-container">
+        <div class="tab-content">
+            <div class="tab-pane p-20 active" id="profitability" role="tabpanel">
+                <div>
+                    <h3> Investment Profitability </h3>
+                    <p> Use our profitability calculator to estimate your potential invest chances of positive yield in a given number of years<br>
+                        Simply enter income, expenses and more details about the invest to calculate if that's the right invest for you right now </p>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="income-params">
+                            <h5 style="color:darkgreen;"> Income </h5>
+
+                            {# Real Estate Income Form #}
+                            <form class="income-params-form">
+                                {% include "financial_calculator/real-estate/forms/income-params.html" %}
+                            </form>
+                        </div>
+
+                        <div class="expenses-params">
+                            <h5 style="color:darkred;"> Expenses </h5>
+                            {# Real Estate Expenses Form #}
+                            <form class="expenses-params-form">
+                                {% include "financial_calculator/real-estate/forms/expenses-params.html" %}
+                            </form>
+                        </div>
+
+                        <div class="advanced-params">
+                            {# Real Estate Advanced Form #}
+                            <form class="advanced-params-form">
+                                {% include "financial_calculator/real-estate/forms/advance-params.html" %}
+                            </form>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-md-9">
+                        {% include "financial_calculator/real-estate/results/main-results.html" %}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane p-20" id="mortgage" role="tabpanel">3</div>
+        </div>
+    </div>
+</div>

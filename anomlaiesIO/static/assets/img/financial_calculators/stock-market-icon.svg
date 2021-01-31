@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>anomaly detection copy 5</title>
+    <desc>Created with Sketch.</desc>
+    <g id="anomaly-detection-copy-5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(2.000000, 17.000000)">
+            <g id="Group" transform="translate(90.237097, 71.922305) rotate(-41.000000) translate(-90.237097, -71.922305) translate(60.237097, 16.422305)">
+                <path d="M29.6788618,0 C46.0700445,0 59.3577236,13.287679 59.3577236,29.6788618 C59.3577236,44.6304561 48.301583,56.9997504 33.9189104,59.0571361 L33.9182602,71.4714309 L36.3414634,71.4715447 L36.3414634,110.235772 L23.0162602,110.235772 L23.0162602,71.4715447 L25.4382602,71.4714309 L25.4390304,59.0571672 C11.0562519,56.999875 0,44.6305314 0,29.6788618 C0,13.287679 13.287679,0 29.6788618,0 Z" id="Combined-Shape" fill="#D8D8D8"></path>
+                <circle id="Oval" fill="#F2F2F2" cx="29.6788618" cy="29.6788618" r="22.4105691"></circle>
+                <polygon id="Polygon" fill="#0562E8" transform="translate(29.678862, 29.678862) rotate(-111.000000) translate(-29.678862, -29.678862) " points="29.6788618 16.9593496 40.6942825 23.3191057 40.6942825 36.0386179 29.6788618 42.398374 18.6634411 36.0386179 18.6634411 23.3191057"></polygon>
+                <circle id="Oval" fill="#F2F2F2" cx="29.6788618" cy="29.6788618" r="3.02845528"></circle>
+            </g>
+            <polyline id="Path-143" stroke="#B3B3B3" stroke-width="2.5" points="46.6382114 66.6260163 37.5528455 70.8658537 20.5934959 52.695122 0 73.8943089"></polyline>
+            <path d="M62.3861789,55.7235772 L52.695122,59.9634146" id="Path-144" stroke="#B3B3B3" stroke-width="2.5"></path>
+            <path d="M91.4593496,41.7926829 L81.7682927,46.0325203" id="Path-144-Copy" stroke="#B3B3B3" stroke-width="2.5"></path>
+            <polyline id="Path-145" stroke="#B3B3B3" stroke-width="2.5" points="101.150407 44.2154472 116.898374 37.5528455 125.98374 51.4837398 136.280488 48.4552846"></polyline>
+            <circle id="Oval" fill="#C7CAC7" cx="19.9878049" cy="53.9065041" r="6.05691057"></circle>
+            <circle id="Oval-Copy" fill="#C7CAC7" cx="141.126016" cy="47.8495935" r="6.05691057"></circle>
+            <circle id="Oval-Copy-2" fill="#C7CAC7" cx="114.47561" cy="36.9471545" r="6.05691057"></circle>
+            <path d="M52.695122,0.605691057 L130.829268,0.605691057" id="Path-146" stroke="#C7CAC7" stroke-width="2.5"></path>
+            <path d="M95.699187,16.3536585 L106.601626,16.3536585" id="Path-147" stroke="#C7CAC7" stroke-width="2.5"></path>
+            <path d="M5.45121951,21.199187 L39.3699187,21.199187" id="Path-148" stroke="#C7CAC7" stroke-width="2.5"></path>
+            <path d="M18.1707317,96.304878 L86.6138211,96.304878" id="Path-149" stroke="#C7CAC7" stroke-width="2.5"></path>
+            <path d="M59.3577236,119.321138 L106.601626,119.321138" id="Path-150" stroke="#C7CAC7" stroke-width="2.5"></path>
+            <path d="M113.264228,72.0772358 L135.069106,72.0772358" id="Path-151" stroke="#C7CAC7" stroke-width="2.5"></path>
+        </g>
+    </g>
+</svg>

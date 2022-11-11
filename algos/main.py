@@ -177,3 +177,6 @@ class FindAnomaliesDriver(object):
             print("Results Statistics:\n{}".format(anomaly.get('results_statistics')))
             print()
             print()
+
+driver = FindAnomaliesDriver()
+driver.run_twitter_algo('/Users/shay.misgav/Documents/Shay Projects/anomaliesIO/algos/test_data/simple_data.csv')

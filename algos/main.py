@@ -1,12 +1,11 @@
-from tad.anomaly_detect_ts import anomaly_detect_ts
+from algos.twitter_algo.anomaly_detect_ts import anomaly_detect_ts
 
 import pandas as pd
 from pathlib import Path
 import logging
-from datetime import datetime
 
 from utils.logger import Log
-from utils.pythonic_utils import change_dict_keys_to_str_type, generate_subset_df_from_fields_list,\
+from utils.pythonic_utils import change_dict_keys_to_str_type, generate_subset_df_from_fields_list, \
     generate_unique_list_values
 
 TEST_DATA_DIR = Path('test_data')
@@ -14,9 +13,9 @@ logging.getLogger('anomaly_detection').setLevel(logging.DEBUG)
 logger = Log(module_name='faDriver')
 
 CSV_FIELDS_SCHEMA = {
-            'dimensions':['platform', 'browser', 'country', 'continent', 'user_type', 'is_new_user','used_web'],
-            'measures':['visits', 'registrations', 'purchases', 'messages']
-        }
+    'dimensions': ['platform', 'browser', 'country', 'continent', 'user_type', 'is_new_user', 'used_web'],
+    'measures': ['visits', 'registrations', 'purchases', 'messages']
+}
 MAX_DIMENSION_FIELD_UNIQUE_VALUES = 4
 
 
@@ -41,7 +40,6 @@ class FindAnomaliesDriver(object):
         '''
 
         return CSV_FIELDS_SCHEMA
-
 
     def modify_series_index_to_datetime(self, df):
         logger.log_debug("Modifying series index to datetime64")
@@ -72,29 +70,28 @@ class FindAnomaliesDriver(object):
         return anomaly_series
 
     def generate_results_dict(self, results, anomaly_series,
-                             dimension_name, dimension_value, measure_name):
+                              dimension_name, dimension_value, measure_name):
         # Get anomalies results
         results_dict = dict(results.get('anoms'))
         results = results.get('anoms')
 
         results_dict = change_dict_keys_to_str_type(results_dict)
 
-
         anomalies_dict = {
             'dimension_name': dimension_name,
-            'dimension_value':dimension_value,
-            'measure_name':measure_name,
+            'dimension_value': dimension_value,
+            'measure_name': measure_name,
 
-            'results_dict':results_dict,
+            'results_dict': results_dict,
             'results_statistics':
-            {
-            'total_values':len(anomaly_series),
-            'min_value':min(anomaly_series),
-            'max_value':max(anomaly_series),
-            'avg_value': anomaly_series.mean(),
-            'median_value':anomaly_series.quantile(.5),
-            'upper_90_value':anomaly_series.quantile(.9)
-            }
+                {
+                    'total_values': len(anomaly_series),
+                    'min_value': min(anomaly_series),
+                    'max_value': max(anomaly_series),
+                    'avg_value': anomaly_series.mean(),
+                    'median_value': anomaly_series.quantile(.5),
+                    'upper_90_value': anomaly_series.quantile(.9)
+                }
         }
         return anomalies_dict
 
@@ -125,12 +122,13 @@ class FindAnomaliesDriver(object):
             for measure in CSV_FIELDS_SCHEMA.get('measures'):
                 measure_name = measure
                 anomaly_df = generate_subset_df_from_fields_list(initial_csv_df,
-                                                                 fields_list=['timestamp', dimension_name, measure_name])
+                                                                 fields_list=['timestamp', dimension_name,
+                                                                              measure_name])
                 # Rename fields
                 anomaly_df.columns = ['timestamp', 'dimension', 'measure']
                 # Get dimension unique values
                 dimension_unique_values = self.get_column_unique_values(df=anomaly_df,
-                                                                            column_name='dimension')
+                                                                        column_name='dimension')
                 # If `dimension_unique_values` is FALSE, skip this dimension
                 # (that means its bigger then max unique values allowed)
                 if dimension_unique_values is False:
@@ -142,17 +140,18 @@ class FindAnomaliesDriver(object):
                 ####   Run Anomaly  ####
                 ########################
                 for dimension_value in dimension_unique_values:
-                    anomaly_series = self.generate_series_for_df_dimension_value(df=anomaly_df, dimension_value=dimension_value)
+                    anomaly_series = self.generate_series_for_df_dimension_value(df=anomaly_df,
+                                                                                 dimension_value=dimension_value)
 
                     # Run anomaly detection
                     try:
                         results = anomaly_detect_ts(anomaly_series,
-                                                    direction='both', alpha=0.05,
+                                                    direction='both', alpha=0.5,
                                                     plot=False, longterm=True,
                                                     resampling=True)
 
                         anomalies_dict = self.generate_results_dict(results, anomaly_series,
-                                                                        dimension_name, dimension_value, measure_name)
+                                                                    dimension_name, dimension_value, measure_name)
                         print()
                         logger.log_info(
                             "####    DIMENSION: {}  |"
@@ -167,16 +166,17 @@ class FindAnomaliesDriver(object):
 
         list_of_skipped_dimensions = generate_unique_list_values(list_of_skipped_dimensions)
         logger.log_critical("Dimensions Skipped: [{} Total] {}".format(len(list_of_skipped_dimensions),
-                                                                           list_of_skipped_dimensions))
+                                                                       list_of_skipped_dimensions))
 
         for anomaly in list_of_anomalies:
             print("###   DIMENSION: {}  |  DIMENSION VALUE: {}  |  MEASURE: {}  |"
                   "  Anomalies: {}   ###".format(anomaly.get('dimension_name'), anomaly.get('dimension_value'),
-                                           anomaly.get('measure_name'), len(anomaly.get('results_dict'))))
+                                                 anomaly.get('measure_name'), len(anomaly.get('results_dict'))))
 
             print("Results Statistics:\n{}".format(anomaly.get('results_statistics')))
             print()
             print()
+
 
 driver = FindAnomaliesDriver()
 driver.run_twitter_algo('/Users/shay.misgav/Documents/Shay Projects/anomaliesIO/algos/test_data/simple_data.csv')

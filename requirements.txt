@@ -1,13 +1,7 @@
-# Django
-pandas
-scipy
-numpy
-matplotlib
+# Algos
+tad
 
-# Django Apps
+# Django
+Django==3.0
 django-csvimport
 djangorestframework
-
-# Algos
-statsmodels
-tad

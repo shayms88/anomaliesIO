@@ -134,7 +134,8 @@ Examples:
      anomaly_detect_ts(raw_data, max_anoms=0.02, direction="both", only_last="hr", period_override=1440)
 
 """
-
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 import numpy as np
 import scipy as sp
 import pandas as pd

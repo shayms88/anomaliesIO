@@ -3,7 +3,7 @@ import logging
 
 from utils.logger import Log
 
-logger = Log(module_name='find_anomalies')
+logger = Log(module_name='find_anomalies_factory')
 logging.getLogger('algos.twitter_algo.anomaly_detect_ts').setLevel(logging.ERROR)
 
 from algos.twitter_algo.anomaly_detect_ts import anomaly_detect_ts
@@ -19,7 +19,8 @@ VALID_DATETIME_STR_FORMATS = ['%Y-%m-%d', '%Y-%m-%d %H:%M:%S', '%Y-%m-%dt%H:%M:%
 
 
 class FindAnomaliesFactory:
-    def __init__(self, df, max_anoms=0.1, direction='both', alpha=0.05, only_last=None, plot=False):
+    def __init__(self, df,
+                 threshold=None, max_anoms=0.01, direction='both', alpha=0.05, only_last=None, plot=False):
         self.df = df
         self.max_anoms = max_anoms
         self.direction = direction
@@ -41,8 +42,9 @@ class FindAnomaliesFactory:
 
     def _get_anomalies(self, anomaly_series):
         return anomaly_detect_ts(anomaly_series,
-                                 direction='both', alpha=0.5,
-                                 plot=False, longterm=True,
+                                 threshold='p99',
+                                 direction='both', alpha=0.9,
+                                 plot=False, longterm=False,
                                  resampling=True,
                                  max_anoms=self.max_anoms)
 
@@ -104,14 +106,16 @@ class FindAnomaliesFactory:
         for dim_value in dimension_unique_values:
             specific_dim_series = self.generate_series_for_df_dimension_value(dimension_value=dim_value)
             try:
-                anomalies = self._get_anomalies(specific_dim_series)
-                list_of_anomalies.append(
-                    {
-                        'dimension_value': dim_value,
-                        'anomalies': anomalies,
-                        'series_statistics': self._get_series_statistics(specific_dim_series)
-                    }
-                )
+                anomalies_results = self._get_anomalies(specific_dim_series)
+                if len(anomalies_results['anoms']) > 0:
+                    list_of_anomalies.append(
+                        {
+                            'dimension_value': dim_value,
+                            'anomalies': anomalies_results['anoms'],
+                            'anomalies_expected_results': anomalies_results['expected'],
+                            'series_statistics': self._get_series_statistics(specific_dim_series)
+                        }
+                    )
             except AssertionError as assertion_err:
                 logger.log_warning(
                     f'could not yield anomaly for dimension: `{dim_value}` due to anomaly_detect_ts assertion error: {assertion_err}')

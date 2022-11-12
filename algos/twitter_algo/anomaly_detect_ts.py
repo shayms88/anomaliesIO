@@ -438,7 +438,7 @@ def anomaly_detect_ts(x, max_anoms=0.1, direction="pos", alpha=0.05, only_last=N
         logger.warning('alpha is the statistical significance and is usually between 0.01 and 0.1')
 
     data, period, granularity = _get_data_tuple(x, period_override, resampling)
-    if granularity is 'day':
+    if granularity == 'day':
         num_days_per_line = 7
         only_last = 'day' if only_last == 'hr' else only_last
 

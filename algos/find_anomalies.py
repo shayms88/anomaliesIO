@@ -42,8 +42,8 @@ class FindAnomaliesFactory:
 
     def _get_anomalies(self, anomaly_series):
         return anomaly_detect_ts(anomaly_series,
-                                 threshold='p99',
-                                 direction='both', alpha=0.9,
+                                 threshold='med_max',
+                                 direction='neg', alpha=0.05,
                                  plot=False, longterm=False,
                                  resampling=True,
                                  max_anoms=self.max_anoms)

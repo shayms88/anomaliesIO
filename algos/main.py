@@ -64,7 +64,7 @@ class AnomaliesFinder:
     @staticmethod
     def _log_final_results(results):
         beautified_results = results.reindex(columns=RESULTS_FIELDS_ORDER)
-        print(beautified_results)
+        print(f'Total anomalies found: {len(beautified_results)}')
         return beautified_results
 
     def run(self):

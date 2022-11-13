@@ -1,15 +1,11 @@
 import pandas as pd
-from pathlib import Path
-import logging
 
 from utils.logger import Log
-from utils.pythonic_utils import change_dict_keys_to_str_type, generate_subset_df_from_fields_list, \
-    generate_unique_list_values
+logger = Log(module_name='anomaly_detection_main')
+
+from utils.pythonic_utils import generate_subset_df_from_fields_list
 from algos.find_anomalies import FindAnomaliesFactory
 
-TEST_DATA_DIR = Path('test_data')
-# logging.getLogger('anomaly_detection').setLevel(logging.DEBUG)
-logger = Log(module_name='anomaly_detection_main')
 
 CSV_FIELDS_SCHEMA = {
     'dimensions': ['platform', 'browser', 'country', 'continent', 'user_type', 'is_new_user', 'used_web'],
@@ -62,7 +58,7 @@ class AnomaliesFinder:
             logger.log_error(f'output format: `{self.output_format}` is not supported')
 
     @staticmethod
-    def _log_final_results(results):
+    def _print_final_results(results):
         beautified_results = results.reindex(columns=RESULTS_FIELDS_ORDER)
         print(f'Total anomalies found: {len(beautified_results)}')
         return beautified_results
@@ -92,7 +88,7 @@ class AnomaliesFinder:
                 final_list_of_anomalies.extend(anomalies_found_enriched)
 
         results = self._format_results(final_list_of_anomalies)
-        self._log_final_results(results)
+        self._print_final_results(results)
         return results
 
 

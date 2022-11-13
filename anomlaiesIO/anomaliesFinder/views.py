@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from algos.main import FindAnomaliesDriver
+from algos.complex_query import FindAnomaliesDriver
 from .anomalies_finder_utils import parse_and_write_uploaded_csv
 
 def anomalies_finder_main(request):

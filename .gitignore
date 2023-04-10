@@ -8,7 +8,6 @@ apis_venv/
 config/
 venv/
 /anomaliesIO_venv/
-.github/
 anomaliesIO_venv/
 /media/
 media

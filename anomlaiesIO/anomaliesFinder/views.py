@@ -2,12 +2,12 @@ import datetime
 
 from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from algos.main import FindAnomaliesDriver
+from algos.get_anomalies.complex_query import FindAnomaliesDriver
 from .anomalies_finder_utils import parse_and_write_uploaded_csv
 
 def anomalies_finder_main(request):

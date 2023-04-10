@@ -40,11 +40,13 @@ class FindAnomaliesFactory:
         column_df = self.df[column_name]
         return column_df.unique()
 
+
     def _get_anomalies(self, anomaly_series):
         return anomaly_detect_ts(anomaly_series,
                                  threshold='med_max',
-                                 direction='neg', alpha=0.05,
-                                 plot=False, longterm=False,
+                                 direction='both', alpha=0.1,
+                                 plot=False,
+                                 longterm=False,
                                  resampling=True,
                                  max_anoms=self.max_anoms)
 

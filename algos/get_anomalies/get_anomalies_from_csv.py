@@ -1,22 +1,15 @@
 import pandas as pd
-from pathlib import Path
-import logging
 
 from utils.logger import Log
-from utils.pythonic_utils import change_dict_keys_to_str_type, generate_subset_df_from_fields_list, \
-    generate_unique_list_values
-from algos.find_anomalies import FindAnomaliesFactory
-
-TEST_DATA_DIR = Path('test_data')
-# logging.getLogger('anomaly_detection').setLevel(logging.DEBUG)
 logger = Log(module_name='anomaly_detection_main')
 
-CSV_FIELDS_SCHEMA = {
-    'dimensions': ['platform', 'browser', 'country', 'continent', 'user_type', 'is_new_user', 'used_web'],
-    'measures': ['visits', 'registrations', 'purchases', 'messages']
-}
+from utils.pythonic_utils import generate_subset_df_from_fields_list
+from algos.find_anomalies import FindAnomaliesFactory
+
+
 MAX_DIMENSION_FIELD_UNIQUE_VALUES = 4
 RESULTS_FIELDS_ORDER = ['dimension_name', 'measure_name', 'dimension_value', 'anomalies', 'anomalies_expected_results', 'series_statistics']
+
 
 class OutputFormats:
     LIST = 'list'
@@ -24,11 +17,13 @@ class OutputFormats:
 
 
 class AnomaliesFinder:
-    def __init__(self, data, output_format=OutputFormats.LIST):
+    def __init__(self, data, csv_columns_schema: dict, output_format: str = OutputFormats.LIST):
         self.data = data
+        self.csv_columns_schema = csv_columns_schema
         self.output_format = output_format
 
-    def get_column_unique_values(self, df, column_name):
+    @staticmethod
+    def get_column_unique_values(df, column_name):
         column_df = df[column_name]
         unique_values_list = column_df.unique()
         if len(unique_values_list) > MAX_DIMENSION_FIELD_UNIQUE_VALUES:
@@ -44,11 +39,13 @@ class AnomaliesFinder:
 
         return anomalies_found
 
-    def get_df_from_csv(self, file_path):
+    @staticmethod
+    def get_df_from_csv(file_path):
         df = pd.read_csv(file_path)
         return df
 
-    def get_df_headers_dtypes(self, df):
+    @staticmethod
+    def get_df_headers_dtypes(df):
         headers_dtypes_raw = df.columns.to_series().groupby(df.dtypes).groups
         headers_dtypes = {k.name: v for k, v in headers_dtypes_raw.items()}
         return headers_dtypes
@@ -62,7 +59,7 @@ class AnomaliesFinder:
             logger.log_error(f'output format: `{self.output_format}` is not supported')
 
     @staticmethod
-    def _log_final_results(results):
+    def _print_final_results(results):
         beautified_results = results.reindex(columns=RESULTS_FIELDS_ORDER)
         print(f'Total anomalies found: {len(beautified_results)}')
         return beautified_results
@@ -74,11 +71,14 @@ class AnomaliesFinder:
 
         # For each dimension and each measure, find anomalies
         final_list_of_anomalies = []
-        for dimension in CSV_FIELDS_SCHEMA.get('dimensions'):
+        dimensions = self.csv_columns_schema.get('dimensions')
+        measures = self.csv_columns_schema.get('measures')
+
+        for dimension in dimensions:
             logger.log_info(f'---- RUNNING FOR DIMENSION: `{dimension}`')
             dimension_name = dimension
 
-            for measure in CSV_FIELDS_SCHEMA.get('measures'):
+            for measure in measures:
                 measure_name = measure
                 dim_and_measure_subset_df = generate_subset_df_from_fields_list(initial_csv_df,
                                                                                 fields_list=['timestamp',
@@ -92,10 +92,5 @@ class AnomaliesFinder:
                 final_list_of_anomalies.extend(anomalies_found_enriched)
 
         results = self._format_results(final_list_of_anomalies)
-        self._log_final_results(results)
+        self._print_final_results(results)
         return results
-
-
-driver = AnomaliesFinder(data='/Users/shay.misgav/Documents/Shay Projects/anomaliesIO/algos/test_data/simple_data.csv',
-                         output_format='df')
-anomlaies = driver.run()

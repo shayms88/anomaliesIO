@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "anomaliesio"
 version = "0.1.0"
-description = ""
-authors = ["shay.misgav <shay.misgav@fiverr.com>"]
+description = "Run anomaly detection algorithms on your data"
+authors = ["shay.misgav <shaymisgav8@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -11,6 +11,9 @@ django = "3.0"
 tad = "^0.0.6"
 djangorestframework = "^3.14.0"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.0"
 
 [build-system]
 requires = ["poetry-core"]

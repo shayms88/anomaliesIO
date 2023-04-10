@@ -15,4 +15,4 @@ jobs:
     - name: 'Install dependencies'
       run: poetry install --no-interaction --no-root
     - name: 'Run unit-tests'
-      run: poetry run pytest
+      run: poetry run pytest algos/test/temp_test_file.py

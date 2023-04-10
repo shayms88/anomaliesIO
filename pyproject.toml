@@ -7,6 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+django = "3.0"
+tad = "^0.0.6"
+djangorestframework = "^3.14.0"
 
 
 [build-system]
